@@ -10,12 +10,6 @@ describe "songs", type:  :feature do
 
   context "when nested under artists" do
 
-    describe "/artists/:artist_id/songs/:id/edit" do
-      it "doesn't display an artist select" do
-        visit edit_artist_song_path(@artist, @song)
-        expect(page).not_to have_select(:artist_id)
-      end
-    end
 
     describe "/artists/:artist_id/songs" do
       it "displays the songs with valid artist" do
@@ -53,11 +47,7 @@ describe "songs", type:  :feature do
 
   describe "/songs/:id" do
 
-    it "links to the artist" do
-      visit song_path(@song)
-      expect(page).to have_link("Daft Punk", href: artist_path(@artist))
-    end
-
+   
     it "links to edit when no artist" do
       song = Song.create(title: "Policy of Truth")
       visit song_path(song)
